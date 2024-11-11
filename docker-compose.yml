@@ -1,0 +1,61 @@
+services:
+  nestjs:
+    build:
+      context: ./game-score
+      dockerfile: Dockerfile
+    ports:
+      - "3027:3000"
+    environment:
+      DATABASE_URL: postgres://bootcampuser:bootcamppass@localhost:5432/game_score_db
+      MONGODB_URL: mongodb://bootcampuser:bootcamppass@localhost:27017/game_score_db
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    depends_on:
+      - db
+      - mongo
+      - redis
+    networks:
+      - game_score
+
+  db:
+    image: postgres:latest
+    environment: 
+      POSTGRES_USER: bootcampuser 
+      POSTGRES_PASSWORD: bootcamppass 
+      POSTGRES_DB: game_score_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - game_score
+
+  mongo:
+    image: mongo:latest
+    command: 
+      - "--logpath"
+      - "/var/log/mongodb/mongod.log"
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks:
+      - game_score
+  
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - game_score
+
+volumes:
+  postgres-data:
+  mongo-data:
+
+networks:
+  game_score:
+    driver: bridge
