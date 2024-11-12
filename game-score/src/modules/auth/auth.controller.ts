@@ -15,8 +15,8 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('login')
-  @ApiOperation({ summary: 'Crear un nuevo jugador' })
-  @ApiResponse({ status: HttpStatus.CREATED, description: 'El jugador ha sido creado' })
+  @ApiOperation({ summary: 'Ingresar un jugador' })
+  @ApiResponse({ status: HttpStatus.CREATED, description: 'Jugador con logueado correctamente!' })
   @ApiResponse({ status: HttpStatus.BAD_REQUEST, description: 'data equivocada' })
   login(@Body() user: LoginUserDto) {
     return this.authService.login(user);

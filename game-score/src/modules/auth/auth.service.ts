@@ -34,6 +34,7 @@ export class AuthService {
     const userAuth =
       await this.validateUser(user.email, user.password);
 
+    
     const payload = {...userAuth};
 
     const token = this.jwtService.sign(payload);
@@ -43,7 +44,9 @@ export class AuthService {
     });
 
     return {
-      token: token
+      token: token,
+      user_id: userAuth.sub,
+      roles: userAuth.roles
     }
   }
 
@@ -61,5 +64,5 @@ export class AuthService {
     } catch (error) {
         return false; 
     }
-}
+  }
 }

@@ -22,7 +22,6 @@ export class ScoresController {
     @ApiOperation({ summary: 'Trae todos los scores' })
     @ApiResponse({ status: HttpStatus.OK, description: 'Todos los scores', type: [Score] })
     async getAllScores(@Query() paginationQuery: PaginationQueryDto) {
-        console.log("AAAAAAt");
       return await this.scoresService.getAllScores(paginationQuery);
     }
 
