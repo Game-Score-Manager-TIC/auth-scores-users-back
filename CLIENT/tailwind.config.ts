@@ -1,0 +1,46 @@
+import type { Config } from "tailwindcss";
+import { iconsPlugin, getIconCollections } from "@egoist/tailwindcss-icons";
+import { nextui } from "@nextui-org/react";
+
+const config: Config = {
+  content: [
+    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        background: "var(--background)",
+        foreground: "var(--foreground)",
+        "d-blue": "#18192F",
+      },
+      backgroundImage: {
+        "gradient-1": "linear-gradient(to top, #18192F, #2B2F58)",
+        "gradient-2": "linear-gradient(to right, #18192F, #2B2F58)",
+        "gradient-3": "linear-gradient(to bottom, #977DFE, #63C5FA)",
+      },
+      fontSize: {
+        heading1: "70px",
+        heading2: "58px",
+        heading3: "48px",
+        heading4: "42px",
+        paragraph1: "30px",
+        paragraph2: "20px",
+        paragraph3: "16px",
+        paragraph4: "14px",
+        label1: "0.8rem",
+        label2: "8px",
+      },
+    },
+  },
+  plugins: [
+    iconsPlugin({
+      collections: getIconCollections(["mdi"]),
+    }),
+    nextui(),
+  ],
+};
+
+export default config;

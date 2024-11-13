@@ -1,0 +1,402 @@
+[
+  {
+    "score_id": "score1",
+    "user_id": "1234567890abcdef",
+    "game": "COD",
+    "score": 125000,
+    "created_at": "2023-01-01T12:00:00Z",
+    "updated_at": "2023-01-01T12:30:00Z"
+  },
+  {
+    "score_id": "score2",
+    "user_id": "abcdef1234567890",
+    "game": "Fortnite",
+    "score": 950000,
+    "created_at": "2023-02-15T14:00:00Z",
+    "updated_at": "2023-02-15T14:30:00Z"
+  },
+  {
+    "score_id": "score3",
+    "user_id": "9876543210fedcba",
+    "game": "Apex Legends",
+    "score": 870000,
+    "created_at": "2023-03-10T16:00:00Z",
+    "updated_at": "2023-03-10T16:45:00Z"
+  },
+  {
+    "score_id": "score4",
+    "user_id": "fedcba9876543210",
+    "game": "Overwatch",
+    "score": 780000,
+    "created_at": "2023-04-05T18:00:00Z",
+    "updated_at": "2023-04-05T18:30:00Z"
+  },
+  {
+    "score_id": "score5",
+    "user_id": "1122334455667788",
+    "game": "COD",
+    "score": 350000,
+    "created_at": "2023-05-20T20:00:00Z",
+    "updated_at": "2023-05-20T20:15:00Z"
+  },
+  {
+    "score_id": "score6",
+    "user_id": "9988776655443322",
+    "game": "FIFA",
+    "score": 200000,
+    "created_at": "2023-06-10T22:00:00Z",
+    "updated_at": "2023-06-10T22:30:00Z"
+  },
+  {
+    "score_id": "score7",
+    "user_id": "6655443322110099",
+    "game": "Fortnite",
+    "score": 110000,
+    "created_at": "2023-07-01T08:00:00Z",
+    "updated_at": "2023-07-01T08:45:00Z"
+  },
+  {
+    "score_id": "score8",
+    "user_id": "2233445566778899",
+    "game": "Apex Legends",
+    "score": 250000,
+    "created_at": "2023-08-15T10:00:00Z",
+    "updated_at": "2023-08-15T10:30:00Z"
+  },
+  {
+    "score_id": "score9",
+    "user_id": "5566778899001122",
+    "game": "Overwatch",
+    "score": 400000,
+    "created_at": "2023-09-20T12:00:00Z",
+    "updated_at": "2023-09-20T12:45:00Z"
+  },
+  {
+    "score_id": "score10",
+    "user_id": "8899001122334455",
+    "game": "COD",
+    "score": 95000,
+    "created_at": "2023-10-01T14:00:00Z",
+    "updated_at": "2023-10-01T14:30:00Z"
+  },
+  {
+    "score_id": "score11",
+    "user_id": "1234567890abcdef",
+    "game": "FIFA",
+    "score": 175000,
+    "created_at": "2023-01-02T15:00:00Z",
+    "updated_at": "2023-01-02T15:45:00Z"
+  },
+  {
+    "score_id": "score12",
+    "user_id": "abcdef1234567890",
+    "game": "COD",
+    "score": 285000,
+    "created_at": "2023-02-16T12:00:00Z",
+    "updated_at": "2023-02-16T12:45:00Z"
+  },
+  {
+    "score_id": "score13",
+    "user_id": "9876543210fedcba",
+    "game": "Fortnite",
+    "score": 910000,
+    "created_at": "2023-03-11T16:00:00Z",
+    "updated_at": "2023-03-11T16:30:00Z"
+  },
+  {
+    "score_id": "score14",
+    "user_id": "fedcba9876543210",
+    "game": "Apex Legends",
+    "score": 650000,
+    "created_at": "2023-04-06T10:00:00Z",
+    "updated_at": "2023-04-06T10:45:00Z"
+  },
+  {
+    "score_id": "score15",
+    "user_id": "1122334455667788",
+    "game": "Overwatch",
+    "score": 880000,
+    "created_at": "2023-05-21T12:00:00Z",
+    "updated_at": "2023-05-21T12:45:00Z"
+  },
+  {
+    "score_id": "score16",
+    "user_id": "9988776655443322",
+    "game": "COD",
+    "score": 670000,
+    "created_at": "2023-06-11T14:00:00Z",
+    "updated_at": "2023-06-11T14:30:00Z"
+  },
+  {
+    "score_id": "score17",
+    "user_id": "6655443322110099",
+    "game": "FIFA",
+    "score": 145000,
+    "created_at": "2023-07-02T16:00:00Z",
+    "updated_at": "2023-07-02T16:45:00Z"
+  },
+  {
+    "score_id": "score18",
+    "user_id": "2233445566778899",
+    "game": "Fortnite",
+    "score": 300000,
+    "created_at": "2023-08-16T18:00:00Z",
+    "updated_at": "2023-08-16T18:30:00Z"
+  },
+  {
+    "score_id": "score19",
+    "user_id": "5566778899001122",
+    "game": "Apex Legends",
+    "score": 560000,
+    "created_at": "2023-09-21T10:00:00Z",
+    "updated_at": "2023-09-21T10:45:00Z"
+  },
+  {
+    "score_id": "score20",
+    "user_id": "8899001122334455",
+    "game": "Overwatch",
+    "score": 99000,
+    "created_at": "2023-10-02T12:00:00Z",
+    "updated_at": "2023-10-02T12:30:00Z"
+  },
+  {
+    "score_id": "score21",
+    "user_id": "1234567890abcdef",
+    "game": "Fortnite",
+    "score": 715000,
+    "created_at": "2023-01-03T14:00:00Z",
+    "updated_at": "2023-01-03T14:45:00Z"
+  },
+  {
+    "score_id": "score22",
+    "user_id": "abcdef1234567890",
+    "game": "Apex Legends",
+    "score": 820000,
+    "created_at": "2023-02-17T16:00:00Z",
+    "updated_at": "2023-02-17T16:30:00Z"
+  },
+  {
+    "score_id": "score23",
+    "user_id": "9876543210fedcba",
+    "game": "Overwatch",
+    "score": 340000,
+    "created_at": "2023-03-12T18:00:00Z",
+    "updated_at": "2023-03-12T18:45:00Z"
+  },
+  {
+    "score_id": "score24",
+    "user_id": "fedcba9876543210",
+    "game": "COD",
+    "score": 125000,
+    "created_at": "2023-04-07T12:00:00Z",
+    "updated_at": "2023-04-07T12:45:00Z"
+  },
+  {
+    "score_id": "score25",
+    "user_id": "1122334455667788",
+    "game": "FIFA",
+    "score": 990000,
+    "created_at": "2023-05-22T14:00:00Z",
+    "updated_at": "2023-05-22T14:30:00Z"
+  },
+  {
+    "score_id": "score26",
+    "user_id": "9988776655443322",
+    "game": "Fortnite",
+    "score": 410000,
+    "created_at": "2023-06-12T16:00:00Z",
+    "updated_at": "2023-06-12T16:45:00Z"
+  },
+  {
+    "score_id": "score27",
+    "user_id": "6655443322110099",
+    "game": "Apex Legends",
+    "score": 950000,
+    "created_at": "2023-07-03T18:00:00Z",
+    "updated_at": "2023-07-03T18:30:00Z"
+  },
+  {
+    "score_id": "score28",
+    "user_id": "2233445566778899",
+    "game": "Overwatch",
+    "score": 570000,
+    "created_at": "2023-08-17T12:00:00Z",
+    "updated_at": "2023-08-17T12:30:00Z"
+  },
+  {
+    "score_id": "score29",
+    "user_id": "5566778899001122",
+    "game": "COD",
+    "score": 235000,
+    "created_at": "2023-09-22T14:00:00Z",
+    "updated_at": "2023-09-22T14:45:00Z"
+  },
+  {
+    "score_id": "score30",
+    "user_id": "8899001122334455",
+    "game": "FIFA",
+    "score": 105000,
+    "created_at": "2023-10-03T16:00:00Z",
+    "updated_at": "2023-10-03T16:30:00Z"
+  },
+  {
+    "score_id": "score31",
+    "user_id": "1234567890abcdef",
+    "game": "Overwatch",
+    "score": 980000,
+    "created_at": "2023-01-04T18:00:00Z",
+    "updated_at": "2023-01-04T18:45:00Z"
+  },
+  {
+    "score_id": "score32",
+    "user_id": "abcdef1234567890",
+    "game": "COD",
+    "score": 210000,
+    "created_at": "2023-02-18T10:00:00Z",
+    "updated_at": "2023-02-18T10:30:00Z"
+  },
+  {
+    "score_id": "score33",
+    "user_id": "9876543210fedcba",
+    "game": "FIFA",
+    "score": 350000,
+    "created_at": "2023-03-13T12:00:00Z",
+    "updated_at": "2023-03-13T12:30:00Z"
+  },
+  {
+    "score_id": "score34",
+    "user_id": "fedcba9876543210",
+    "game": "Fortnite",
+    "score": 870000,
+    "created_at": "2023-04-08T14:00:00Z",
+    "updated_at": "2023-04-08T14:45:00Z"
+  },
+  {
+    "score_id": "score35",
+    "user_id": "1122334455667788",
+    "game": "Apex Legends",
+    "score": 620000,
+    "created_at": "2023-05-23T16:00:00Z",
+    "updated_at": "2023-05-23T16:30:00Z"
+  },
+  {
+    "score_id": "score36",
+    "user_id": "9988776655443322",
+    "game": "Overwatch",
+    "score": 740000,
+    "created_at": "2023-06-13T18:00:00Z",
+    "updated_at": "2023-06-13T18:45:00Z"
+  },
+  {
+    "score_id": "score37",
+    "user_id": "6655443322110099",
+    "game": "COD",
+    "score": 120000,
+    "created_at": "2023-07-04T12:00:00Z",
+    "updated_at": "2023-07-04T12:45:00Z"
+  },
+  {
+    "score_id": "score38",
+    "user_id": "2233445566778899",
+    "game": "FIFA",
+    "score": 550000,
+    "created_at": "2023-08-18T14:00:00Z",
+    "updated_at": "2023-08-18T14:30:00Z"
+  },
+  {
+    "score_id": "score39",
+    "user_id": "5566778899001122",
+    "game": "Fortnite",
+    "score": 765000,
+    "created_at": "2023-09-23T16:00:00Z",
+    "updated_at": "2023-09-23T16:45:00Z"
+  },
+  {
+    "score_id": "score40",
+    "user_id": "8899001122334455",
+    "game": "Apex Legends",
+    "score": 490000,
+    "created_at": "2023-10-04T18:00:00Z",
+    "updated_at": "2023-10-04T18:45:00Z"
+  },
+  {
+    "score_id": "score41",
+    "user_id": "1234567890abcdef",
+    "game": "Overwatch",
+    "score": 850000,
+    "created_at": "2023-01-05T12:00:00Z",
+    "updated_at": "2023-01-05T12:45:00Z"
+  },
+  {
+    "score_id": "score42",
+    "user_id": "abcdef1234567890",
+    "game": "COD",
+    "score": 600000,
+    "created_at": "2023-02-19T14:00:00Z",
+    "updated_at": "2023-02-19T14:30:00Z"
+  },
+  {
+    "score_id": "score43",
+    "user_id": "9876543210fedcba",
+    "game": "FIFA",
+    "score": 720000,
+    "created_at": "2023-03-14T16:00:00Z",
+    "updated_at": "2023-03-14T16:30:00Z"
+  },
+  {
+    "score_id": "score44",
+    "user_id": "fedcba9876543210",
+    "game": "Fortnite",
+    "score": 940000,
+    "created_at": "2023-04-09T18:00:00Z",
+    "updated_at": "2023-04-09T18:45:00Z"
+  },
+  {
+    "score_id": "score45",
+    "user_id": "1122334455667788",
+    "game": "Apex Legends",
+    "score": 870000,
+    "created_at": "2023-05-24T12:00:00Z",
+    "updated_at": "2023-05-24T12:30:00Z"
+  },
+  {
+    "score_id": "score46",
+    "user_id": "9988776655443322",
+    "game": "Overwatch",
+    "score": 390000,
+    "created_at": "2023-06-14T14:00:00Z",
+    "updated_at": "2023-06-14T14:45:00Z"
+  },
+  {
+    "score_id": "score47",
+    "user_id": "6655443322110099",
+    "game": "COD",
+    "score": 210000,
+    "created_at": "2023-07-05T16:00:00Z",
+    "updated_at": "2023-07-05T16:30:00Z"
+  },
+  {
+    "score_id": "score48",
+    "user_id": "2233445566778899",
+    "game": "FIFA",
+    "score": 630000,
+    "created_at": "2023-08-19T18:00:00Z",
+    "updated_at": "2023-08-19T18:45:00Z"
+  },
+  {
+    "score_id": "score49",
+    "user_id": "5566778899001122",
+    "game": "Fortnite",
+    "score": 835000,
+    "created_at": "2023-09-24T12:00:00Z",
+    "updated_at": "2023-09-24T12:45:00Z"
+  },
+  {
+    "score_id": "score50",
+    "user_id": "8899001122334455",
+    "game": "Apex Legends",
+    "score": 570000,
+    "created_at": "2023-10-05T14:00:00Z",
+    "updated_at": "2023-10-05T14:30:00Z"
+  }
+]

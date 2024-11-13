@@ -1,0 +1,122 @@
+[
+  {
+    "user_id": "1234567890abcdef",
+    "username": "johndoe",
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar1.jpg",
+    "created_at": "2024-10-12T12:34:56Z",
+    "updated_at": "2024-10-12T13:45:00Z"
+  },
+  {
+    "user_id": "abcdef1234567890",
+    "username": "janedoe",
+    "name": "Jane Doe",
+    "email": "janedoe@example.com",
+    "password": "password456",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar2.jpg",
+    "created_at": "2024-10-11T10:24:50Z",
+    "updated_at": "2024-10-12T11:30:00Z"
+  },
+  {
+    "user_id": "9876543210fedcba",
+    "username": "mikesmith",
+    "name": "Mike Smith",
+    "email": "mikesmith@example.com",
+    "password": "password789",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar3.jpg",
+    "created_at": "2024-10-10T09:15:40Z",
+    "updated_at": "2024-10-12T10:50:00Z"
+  },
+  {
+    "user_id": "fedcba9876543210",
+    "username": "annajones",
+    "name": "Anna Jones",
+    "email": "annajones@example.com",
+    "password": "password101",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar4.jpg",
+    "created_at": "2024-10-09T08:05:30Z",
+    "updated_at": "2024-10-11T09:45:00Z"
+  },
+  {
+    "user_id": "1122334455667788",
+    "username": "roberttaylor",
+    "name": "Robert Taylor",
+    "email": "roberttaylor@example.com",
+    "password": "password202",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar5.jpg",
+    "created_at": "2024-10-08T07:55:20Z",
+    "updated_at": "2024-10-10T08:40:00Z"
+  },
+  {
+    "user_id": "9988776655443322",
+    "username": "lisabrown",
+    "name": "Lisa Brown",
+    "email": "lisabrown@example.com",
+    "password": "password303",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar6.jpg",
+    "created_at": "2024-10-07T06:45:10Z",
+    "updated_at": "2024-10-09T07:35:00Z"
+  },
+  {
+    "user_id": "6655443322110099",
+    "username": "davidwilson",
+    "name": "David Wilson",
+    "email": "davidwilson@example.com",
+    "password": "password404",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar7.jpg",
+    "created_at": "2024-10-06T05:35:00Z",
+    "updated_at": "2024-10-08T06:25:00Z"
+  },
+  {
+    "user_id": "2233445566778899",
+    "username": "sarahlee",
+    "name": "Sarah Lee",
+    "email": "sarahlee@example.com",
+    "password": "password505",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar8.jpg",
+    "created_at": "2024-10-05T04:25:50Z",
+    "updated_at": "2024-10-07T05:15:00Z"
+  },
+  {
+    "user_id": "5566778899001122",
+    "username": "matthewking",
+    "name": "Matthew King",
+    "email": "matthewking@example.com",
+    "password": "password606",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar9.jpg",
+    "created_at": "2024-10-04T03:15:40Z",
+    "updated_at": "2024-10-06T04:05:00Z"
+  },
+  {
+    "user_id": "8899001122334455",
+    "username": "emilydavis",
+    "name": "Emily Davis",
+    "email": "emilydavis@example.com",
+    "password": "password707",
+    "role": "user",
+    "status": "blocked",
+    "avatar": "https://example.com/avatar10.jpg",
+    "created_at": "2024-10-03T02:05:30Z",
+    "updated_at": "2024-10-05T03:00:00Z"
+  }
+]
