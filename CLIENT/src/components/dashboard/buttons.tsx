@@ -18,7 +18,7 @@ export function UpdateUserButton({ id }: { id: string }) {
   return (
     <Link
       href="/dashboard/invoices"
-      className="rounded-md border p-2 hover:bg-gray-100"
+      className="rounded-md border p-2 hover:bg-d-green"
     >
       <PencilIcon className="w-5" />
     </Link>
@@ -28,7 +28,7 @@ export function UpdateUserButton({ id }: { id: string }) {
 export function DeleteUserButton({ id }: { id: string }) {
   return (
     <>
-      <button className="rounded-md border p-2 hover:bg-gray-100">
+      <button className="rounded-md border p-2 hover:bg-d-red">
         <span className="sr-only">Delete</span>
         <TrashIcon className="w-5" />
       </button>

@@ -15,11 +15,16 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         "d-blue": "#18192F",
+        "d-green": "#4CCB87",
+        "d-red": "#cb4c4c",
       },
       backgroundImage: {
         "gradient-1": "linear-gradient(to top, #18192F, #2B2F58)",
         "gradient-2": "linear-gradient(to right, #18192F, #2B2F58)",
         "gradient-3": "linear-gradient(to bottom, #977DFE, #63C5FA)",
+        "gradient-4": "linear-gradient(to bottom, #18192F, #2B2F58)",
+        "gradient-5": "linear-gradient(to left, #18192F, #2B2F58)",
+
       },
       fontSize: {
         heading1: "70px",

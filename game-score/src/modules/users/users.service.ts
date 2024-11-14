@@ -6,6 +6,7 @@ import { PaginationQueryDto } from '../commons/paginationQueryDto';
 import { Response } from 'express';  
 import { join } from 'path';         
 import * as fs from 'fs';  
+import { faker } from '@faker-js/faker';
 
 
 export interface Paginator<T = any> {
@@ -19,7 +20,36 @@ export interface Paginator<T = any> {
 @Injectable()
 export class UsersService {
 
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) {
+    // this.generateMockData()
+  }
+
+  // private async generateMockData(): Promise<void> {
+  //   const roles = await this.prisma.role.findMany();
+
+  //   for (let i = 0; i < 1000; i++) {
+  //     const role = faker.helpers.arrayElement(roles); // Obtener un rol aleatorio
+
+  //     const userData = {
+  //       email: faker.internet.email(),
+  //       name: `${faker.person.firstName()} ${faker.person.lastName()}`,
+  //       password: await hash("holaMundo", 10),
+  //       avatar: faker.image.avatar(),
+  //       status: faker.helpers.arrayElement(['ACTIVE', 'INACTIVE', 'BLOCKED']), // Enum aleatorio de Status
+  //       created_at: new Date(),
+  //       updated_at: new Date(),
+  //     };
+
+  //     await this.prisma.user.create({
+  //       data: {
+  //         ...userData,
+  //         roles: {
+  //           connect: [{ id: role.id }], // Asigna un rol aleatorio
+  //         },
+  //       },
+  //     });
+  //   }
+  // }
 
 
   async createUser(body: CreateUserDto){
@@ -107,7 +137,7 @@ export class UsersService {
   }
 
   async getAllUsers(paginationQuery: PaginationQueryDto): Promise<Paginator> {
-    const { limit = 10, page = 1 } = paginationQuery;
+    const { limit = 8, page = 1 } = paginationQuery;
     const skip = (page - 1) * limit;
   
     // Obtener los usuarios con paginación

@@ -1,27 +1,27 @@
-"use client"
-import { CheckIcon, ClockIcon } from "@heroicons/react/24/outline";
+"use client";
+import { CheckIcon, LockClosedIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 
 export default function InvoiceStatus({ status }: { status: string }) {
   return (
     <span
       className={clsx(
-        "inline-flex items-center rounded-full px-2 py-1 text-xs",
+        "inline-flex items-center rounded-full px-2 py-1 text-xs font-semibold",
         {
-          "bg-gray-100 text-gray-500": status === "pending",
-          "bg-green-500 text-white": status === "paid",
+          "bg-d-red text-white": status === "BLOCKED", // Fondo rojo para "BLOCKED"
+          "bg-d-green text-white": status === "ACTIVE", // Fondo verde para "ACTIVE"
         }
       )}
     >
-      {status === "pending" ? (
+      {status === "BLOCKED" ? (
         <>
-          Pending
-          <ClockIcon className="ml-1 w-4 text-gray-500" />
+          Bloqueado
+          <LockClosedIcon className="ml-1 w-4 text-white" />
         </>
       ) : null}
-      {status === "paid" ? (
+      {status === "ACTIVE" ? (
         <>
-          Paid
+          Activo
           <CheckIcon className="ml-1 w-4 text-white" />
         </>
       ) : null}
