@@ -3,12 +3,14 @@ import { Type } from 'class-transformer';
 
 export class PaginationQueryDto {
   @IsOptional()
-  @IsPositive()
-  @Type(() => Number)
-  limit?: number;
+  @Type(() => String)
+  limit?: string;
 
   @IsOptional()
-  @IsPositive()
-  @Type(() => Number)
-  page?: number;
+  @Type(() => String)
+  page?: string;
+
+  @IsOptional()
+  @Type(() => String)
+  query?: string;
 }

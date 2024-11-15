@@ -9,48 +9,51 @@ import { PaginationQueryDto } from '../commons/paginationQueryDto';
 @Injectable()
 export class ScoresService {
 
-    constructor(@InjectModel(Score.name) private scoreModel: Model<Score>){}
+    constructor(@InjectModel(Score.name) private scoreModel: Model<Score>) { }
 
     async getAllScores(paginationQuery: PaginationQueryDto) {
         const { limit = 10, page = 1 } = paginationQuery;
-        const skip = (page - 1) * limit;
-    
+        const limitNumber = Number(limit)
+        const pageNumber = Number(page)
+        const skip = (pageNumber - 1) * limitNumber;
+
         // Obtener los resultados paginados
         const scores = await this.scoreModel
-          .find({ status: true })
-          .select({ scoreId: 1, _id: 0, game: 1, score: 1, userId: 1 })
-          .skip(skip)
-          .limit(limit)
-          .exec();
-    
+            .find({ status: true })
+            .select({ scoreId: 1, _id: 0, game: 1, score: 1, userId: 1 })
+            .skip(skip)
+            .limit(limitNumber)
+            .exec();
+
         // Contar el total de documentos
         const total = await this.scoreModel.countDocuments({ status: true });
-        const totalPages = Math.ceil(total / limit);
-    
+        const totalPages = Math.ceil(total / limitNumber);
+
         return {
-          data: scores,
-          total,
-          page,
-          limit,
-          totalPages,
+            data: scores,
+            total,
+            page,
+            limit,
+            totalPages,
         };
     }
 
-    async createScore(createScoreDto: CreateScoresDto){
+    async createScore(createScoreDto: CreateScoresDto) {
         const newScore = new this.scoreModel(createScoreDto);
         const score = await newScore.save();
         return this.getScoreById(score.scoreId);
     }
 
-    async getScoreById(scoreId: string): Promise<Score>{
+    async getScoreById(scoreId: string): Promise<Score> {
         const foundScore = await this.scoreModel
             .findOne({
                 scoreId: scoreId,
-                status: true})
-            .select({scoreId: 1, _id:0, game:1, score: 1, userId: 1})
+                status: true
+            })
+            .select({ scoreId: 1, _id: 0, game: 1, score: 1, userId: 1 })
             .exec();
 
-        if(!foundScore){
+        if (!foundScore) {
             throw new NotFoundException(`Score with id ${scoreId} not found`);
         }
 
@@ -65,22 +68,23 @@ export class ScoresService {
                 { new: true }
             )
             .exec();
-    
+
         if (!updatedScore) {
             throw new NotFoundException(`Score with id ${scoreId} not found`);
         }
-    
+
         return this.getScoreById(updatedScore.scoreId);
     }
 
     async deleteScore(scoreId: string): Promise<void> {
         const deleteScore = await this.scoreModel.findOneAndUpdate({
             scoreId: scoreId,
-            status: true },
+            status: true
+        },
             { status: false })
             .exec();
 
-        if(!deleteScore){
+        if (!deleteScore) {
             throw new NotFoundException(`Score with id ${scoreId} not found`);
         }
     }
@@ -91,7 +95,7 @@ export class ScoresService {
             .sort({ score: -1 }) // Orden descendente
             .limit(10)            // Limitar a los primeros 10
             .select({ scoreId: 1, _id: 0, game: 1, score: 1, userId: 1 })
-            .exec();       
+            .exec();
         return topScores;
     }
 }

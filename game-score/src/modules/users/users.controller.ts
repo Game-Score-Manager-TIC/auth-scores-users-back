@@ -1,4 +1,4 @@
-import { Controller,Delete,Patch,HttpCode, Get, Post, Put, Param, Body, HttpStatus, Query, UseGuards, UseInterceptors, Req,Res } from '@nestjs/common';
+import { Controller, Delete, Patch, HttpCode, Get, Post, Put, Param, Body, HttpStatus, Query, UseGuards, UseInterceptors, Req, Res } from '@nestjs/common';
 import { ApiTags, ApiOperation, ApiResponse, ApiBearerAuth, ApiConsumes, ApiBody } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { Roles } from '../auth/roles.decorator';
@@ -15,7 +15,7 @@ import { Request, Response } from 'express';
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(private readonly usersService: UsersService) { }
 
   @Get()
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -46,7 +46,7 @@ export class UsersController {
     schema: {
       type: 'object',
       properties: {
-        name: { type: 'string'},
+        name: { type: 'string' },
         file: {
           type: 'string',
           format: 'binary'
@@ -55,29 +55,29 @@ export class UsersController {
     },
   })
   @ApiResponse({ status: HttpStatus.OK, description: 'El jugador ha sido actulizado!' })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontado!'})
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontado!' })
   @UseInterceptors(
     FileInterceptor(
       'file', {
-        storage: diskStorage({
-          destination: './dist/uploads',
-          filename: (req, file, callback) => {
-            const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() *1e9);
-            const ext = extname(file.originalname);
-            const filename = `${uniqueSuffix}${ext}`;
-            callback(null, filename);
-          }
-        }),
-        limits: { fileSize: 1024 * 1024*2} // 2Mb
+      storage: diskStorage({
+        destination: './dist/uploads',
+        filename: (req, file, callback) => {
+          const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+          const ext = extname(file.originalname);
+          const filename = `${uniqueSuffix}${ext}`;
+          callback(null, filename);
+        }
       }),
+      limits: { fileSize: 1024 * 1024 * 2 } // 2Mb
+    }),
   )
   updateUser(
     @Param('userId') userId: string,
     @UploadedFile() file: Express.Multer.File,
     @Req() request: Request,
-  ){
+  ) {
     return this.usersService.updateUserById(userId, file, request.body);
-  } 
+  }
 
   @Get(':userId')
   @UseGuards(JwtAuthGuard, RolesGuard)
@@ -85,7 +85,7 @@ export class UsersController {
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Obtener un jugador por ID' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Jugador encontrado' })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontrado!'})
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontrado!' })
   getUserById(@Param('userId') userId: string) {
     return this.usersService.getUserById(userId);
   }
@@ -109,7 +109,7 @@ export class UsersController {
   @ApiOperation({ summary: 'Eliminar un jugador por ID' })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontrado!' })
   @ApiResponse({ status: HttpStatus.NO_CONTENT, description: 'El jugador ha sido eliminado!' })
-  @HttpCode(HttpStatus.NO_CONTENT) 
+  @HttpCode(HttpStatus.NO_CONTENT)
   async deleteUserById(@Param('userId') userId: string) {
     await this.usersService.deleteUserById(userId);
   }
@@ -119,10 +119,10 @@ export class UsersController {
   @Roles('ADMIN')
   @ApiBearerAuth()
   @ApiOperation({ summary: 'Cambiar el status de un jugador por ID' })
-  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontrado!'})
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontrado!' })
   @ApiResponse({ status: HttpStatus.NO_CONTENT, description: 'El status del jugador ha sido cambiado!' })
   @HttpCode(HttpStatus.NO_CONTENT)
-  changedUserStatusById(@Param('userId') userId: string) {
+  async changedUserStatusById(@Param('userId') userId: string) {
     return this.usersService.changedUserStatusById(userId);
   }
 }
