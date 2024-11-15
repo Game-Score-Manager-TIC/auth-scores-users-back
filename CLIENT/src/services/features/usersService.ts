@@ -1,9 +1,24 @@
 import apiClient from "../apiClient";
 
-export const getAllUsers = async (token: string) => {
+export const getAllUsers = async (
+  paginationQuery: { page: number; limit: number; query?: string },
+  token: string
+) => {
+  const params = new URLSearchParams({
+    page: String(paginationQuery.page),
+    limit: String(paginationQuery.limit),
+  });
+
+  // Agregar el parámetro `query` si está definido
+  if (paginationQuery.query) {
+    params.append("query", paginationQuery.query);
+  }
+
   const response = await apiClient.get("/users", {
     headers: { Authorization: `Bearer ${token}` },
+    params, // Esto ahora incluye `page`, `limit`, y `query` si existe
   });
+
   return response.data;
 };
 
@@ -45,7 +60,13 @@ export const deleteUser = async (userId: string, token: string) => {
 };
 
 export const changeUserStatus = async (userId: string, token: string) => {
-  await apiClient.patch(`/users/${userId}`, null, {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  const response = await apiClient.patch(
+    `/users/${userId}`,
+    {},  // Enviar un objeto vacío como cuerpo si es necesario
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
+  console.log("Response!", response);
+  return response;
 };

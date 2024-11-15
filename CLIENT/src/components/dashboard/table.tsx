@@ -43,7 +43,7 @@ export default function UsersTable({
                     <p className="font-medium">{user.name}</p>
                     <p className="text-sm text-gray-500">{user.email}</p>
                     <p className="text-sm text-gray-500">
-                      Roles: {user.roles.join(", ")}
+                      Roles: {user.roles.join(",")}
                     </p>
                     <UserStatus status={user.status} />
                   </div>
@@ -53,22 +53,22 @@ export default function UsersTable({
           </div>
 
           {/* Desktop view */}
-          <table className="hidden min-w-full text-white md:table">
+          <table className="hidden min-w-full table-fixed text-white md:table">
             <thead className="rounded-lg text-left text-sm font-normal">
               <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
+                <th scope="col" className="w-[20%] px-4 py-5 font-medium sm:pl-6">
                   Name
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-[25%] px-3 py-5 font-medium">
                   Email
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-[20%] px-3 py-5 font-medium">
                   Roles
                 </th>
-                <th scope="col" className="px-3 py-5 font-medium">
+                <th scope="col" className="w-[15%] px-3 py-5 font-medium">
                   Status
                 </th>
-                <th scope="col" className="relative py-3 pl-6 pr-3">
+                <th scope="col" className="w-[20%] py-3 pl-6 pr-3">
                   <span className="sr-only">Edit</span>
                 </th>
               </tr>
@@ -95,15 +95,15 @@ export default function UsersTable({
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">{user.email}</td>
                   <td className="whitespace-nowrap px-3 py-3">
-                    {user.roles.join(", ")}
+                    {user.roles.join(",")}
                   </td>
                   <td className="whitespace-nowrap px-3 py-3">
                     <UserStatus status={user.status} />
                   </td>
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
                     <div className="flex justify-end gap-3">
-                      <UpdateUserButton id={user.userId} />
-                      <DeleteUserButton id={user.userId} />
+                      <UpdateUserButton id={user.userId} page={currentPage} />
+                      <DeleteUserButton id={user.userId} page={currentPage} />
                     </div>
                   </td>
                 </tr>
@@ -115,3 +115,5 @@ export default function UsersTable({
     </div>
   );
 }
+
+

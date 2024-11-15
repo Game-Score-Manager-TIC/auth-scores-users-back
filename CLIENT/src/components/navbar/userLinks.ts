@@ -24,29 +24,14 @@ const playerRoutes = [
 const adminRoutes = [
   ...global,
   { name: "Admin - Jugadores", href: "/users/admin", icon: UserGroupIcon },
-  {
-    name: "Admin - Gestión de Usuarios",
-    href: "/users/admin/:userId",
-    icon: PencilSquareIcon,
-  },
-  // {
-  //   name: "Admin - Eliminar Usuario",
-  //   href: "/users/admin/:userId",
-  //   icon: TrashIcon,
-  // },
-  {
-    name: "Admin - Eliminar Puntuación",
-    href: "/users/admin/scores/:userId",
-    icon: TrashIcon,
-  },
 ];
 
 export const getNavigationLinks = (roles: string[]) => {
   return roles.includes("ADMIN")
     ? adminRoutes
     : roles.includes("PLAYER")
-    ? playerRoutes
-    : global;
+      ? playerRoutes
+      : global;
 };
 
 export const authLinks = [

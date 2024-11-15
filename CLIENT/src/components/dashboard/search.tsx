@@ -3,24 +3,37 @@
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useSearchParams, usePathname, useRouter } from "next/navigation";
 import { useDebouncedCallback } from "use-debounce";
+import { useEffect } from "react";
+import { fetchUsers } from "client/redux/features/users";
+import { useAppDispatch } from "client/redux/hooks";
 
 export default function Search({ placeholder }: { placeholder: string }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
-  const { replace } = useRouter();
+  const dispatch = useAppDispatch();
+  const { push } = useRouter();
 
   const handleSearch = useDebouncedCallback((term: string) => {
     const params = new URLSearchParams(searchParams);
+
     if (term) {
       params.set("query", term);
     } else {
       params.delete("query");
     }
-
     params.set("page", "1");
-
-    replace(`${pathname}?${params.toString()}`);
+    push(`${pathname}?${params.toString()}`);
   }, 300);
+
+  useEffect(() => {
+    const query = searchParams.get("query");
+    const page = searchParams.get("page");
+    if (query) {
+      dispatch(fetchUsers({ page: Number(page) || 1, limit: 8, query }));
+    } else {
+      dispatch(fetchUsers({ page: Number(page) || 1, limit: 8 }));
+    }
+  }, [searchParams, dispatch]);
 
   return (
     <div className="relative flex flex-1 flex-shrink-0">

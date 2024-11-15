@@ -17,6 +17,7 @@ const config: Config = {
         "d-blue": "#18192F",
         "d-green": "#4CCB87",
         "d-red": "#cb4c4c",
+        'd-gray': '#E5E7EB', 
       },
       backgroundImage: {
         "gradient-1": "linear-gradient(to top, #18192F, #2B2F58)",

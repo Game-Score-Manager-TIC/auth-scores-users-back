@@ -17,13 +17,15 @@ export default function Page({
 }) {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectAllUsers);
-  const status = useAppSelector((state) => state.users.status);
+  const { page, totalPages } = useAppSelector((state) => state.users)
   const query = searchParams?.query || "";
+  const currentPage = Number(searchParams?.page) || 1;
+
 
   useEffect(() => {
     // Despachar la acción fetchUsers cuando el componente se monta
-    dispatch(fetchUsers());
-  }, [dispatch]);
+    dispatch(fetchUsers({ page: currentPage, limit: 8, query }));
+  }, [dispatch, currentPage]);
 
   return (
     <div className="w-full">
@@ -33,16 +35,12 @@ export default function Page({
       <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
         <Search placeholder="Search users..." />
       </div>
-
-      {/* Muestra el skeleton mientras los datos están cargando */}
-      {status === "loading" ? (
-        <InvoicesTableSkeleton />
-      ) : (
-        <Table data={users} query={query} currentPage={1} />
-      )}
+      <Suspense key={query + page} fallback={<InvoicesTableSkeleton />}>
+        <Table data={users} currentPage={page} />
+      </Suspense>
 
       <div className="mt-5 flex w-full justify-center">
-        {/* Aquí puedes agregar la lógica de paginación o mostrar el total de usuarios */}
+        <Pagination totalPages={totalPages} />
       </div>
     </div>
   );

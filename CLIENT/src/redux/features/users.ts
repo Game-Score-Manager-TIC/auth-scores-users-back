@@ -35,16 +35,19 @@ const initialState: UsersState = {
   error: null,
   total: 0,
   page: 1,
-  limit: 10,
+  limit: 8,
   totalPages: 0,
 };
 
 // Thunk para obtener todos los usuarios
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  async (paginationQuery: { page: number; limit: number }, { getState }) => {
+  async (
+    paginationQuery: { page: number; limit: number; query?: string },
+    { getState }
+  ) => {
     const token = (getState() as RootState).auth.token;
-    const response = await getAllUsers(token);
+    const response = await getAllUsers(paginationQuery, token);
     return response;
   }
 );
@@ -95,6 +98,8 @@ export const toggleUserStatus = createAsyncThunk(
   "users/toggleUserStatus",
   async (userId: string, { getState }) => {
     const token = (getState() as RootState).auth.token;
+    console.log("userId", userId, "token", token);
+
     await changeUserStatus(userId, token);
     return userId;
   }
@@ -112,7 +117,7 @@ const usersSlice = createSlice({
       state.error = null;
       state.total = 0;
       state.page = 1;
-      state.limit = 10;
+      state.limit = 8;
       state.totalPages = 0;
     },
   },
