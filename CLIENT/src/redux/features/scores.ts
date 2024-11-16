@@ -4,23 +4,40 @@ import {
   getAllScores,
   createScore,
   deleteScore as deleteScoreAPI,
+  getTopFiveScores,
 } from "client/services/features/scoresService"; // Ajusta la ruta de importación según tu estructura de archivos
 
-type Score = {
+export type Score = {
   score_id: string;
   game: string;
   score: number;
   user_id: string;
 };
 
+export type User = {
+  name: string;
+  email: string;
+  avatar: string;
+}
+
+export type ScoreTopFive = {
+  score_id: string;
+  game: string;
+  score: number;
+  user_id: string;
+  user: User;
+}
+
 type ScoresState = {
   scores: Score[];
+  scoresTopFive: ScoreTopFive[]
   status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 };
 
 const initialState: ScoresState = {
   scores: [],
+  scoresTopFive: [],
   status: "idle",
   error: null,
 };
@@ -31,6 +48,19 @@ export const fetchScores = createAsyncThunk(
   async (paginationQuery: { page: number; limit: number }, { getState }) => {
     const token = (getState() as RootState).auth.token; // Obtén el token de la autenticación
     return await getAllScores(paginationQuery, token);
+  }
+);
+
+// Thunk para obtner los 5 mejores scores
+export const fetchTopFiveScores = createAsyncThunk<
+  ScoreTopFive[], 
+  void,
+  { rejectValue: string }
+>(
+  "scores/fetchTopFiveScores",
+  async (_, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+    return await getTopFiveScores(token);
   }
 );
 
@@ -78,6 +108,16 @@ export const scores = createSlice({
       state.status = "failed";
       state.error = action.error.message || "Error fetching scores";
     });
+    // Caso fulfilled para fetchTopFiveScores
+    builder.addCase(fetchTopFiveScores.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.scoresTopFive = action.payload;
+    });
+    // Caso pending para fetchTopFiveScores
+    builder.addCase(fetchTopFiveScores.pending, (state) => {
+      state.status = "loading";
+
+    });
 
     // Caso fulfilled para addNewScore
     builder.addCase(addNewScore.fulfilled, (state, action) => {
@@ -99,6 +139,8 @@ export const { restoreScoreData } = scores.actions;
 // Selectores
 export const selecAllScores = (state: { scores: ScoresState }) =>
   state.scores.scores;
+export const selecTopFiveScores = (state: { scores: ScoresState }) =>
+  state.scores.scoresTopFive
 export const selecScoresById =
   (user_id: string) => (state: { scores: ScoresState }) =>
     state.scores.scores.filter((score) => score.user_id === user_id);

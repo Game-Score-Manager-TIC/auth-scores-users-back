@@ -6,6 +6,7 @@ import { InvoicesTableSkeleton } from "client/components/ui/skeletons";
 import { Suspense, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "client/redux/hooks";
 import { fetchUsers, selectAllUsers } from "client/redux/features/users";
+import { fetchTopFiveScores, selecTopFiveScores } from "client/redux/features/scores";
 
 export default function Page({
   searchParams,
@@ -17,6 +18,7 @@ export default function Page({
 }) {
   const dispatch = useAppDispatch();
   const users = useAppSelector(selectAllUsers);
+  const scoresTopFive = useAppSelector(selecTopFiveScores)
   const { page, totalPages } = useAppSelector((state) => state.users)
   const query = searchParams?.query || "";
   const currentPage = Number(searchParams?.page) || 1;
@@ -25,6 +27,7 @@ export default function Page({
   useEffect(() => {
     // Despachar la acción fetchUsers cuando el componente se monta
     dispatch(fetchUsers({ page: currentPage, limit: 8, query }));
+    dispatch(fetchTopFiveScores())
   }, [dispatch, currentPage]);
 
   return (

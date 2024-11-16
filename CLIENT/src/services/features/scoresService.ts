@@ -22,8 +22,8 @@ export async function createScore(createScoreDto: { playerId: string; score: num
 }
 
 // Obtener los 10 puntajes más altos
-export async function getTopTenScores(token: string) {
-  const response = await apiClient.get("/scores/top-ten", {
+export async function getTopFiveScores(token: string) {
+  const response = await apiClient.get("/scores/top-five", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
