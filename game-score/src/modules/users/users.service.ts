@@ -52,6 +52,7 @@ export class UsersService {
   // }
 
 
+
   async createUser(body: CreateUserDto) {
     const existingUser = await this.prisma.user.findUnique({
       where: { email: body.email },
@@ -122,6 +123,26 @@ export class UsersService {
 
     return userItem;
 
+  }
+
+  async getUsersByIds(userIds: string[]) {
+    const users = await this.prisma.user.findMany({
+      where: {
+        userId: { in: userIds },
+        OR: [
+          { status: "ACTIVE" },
+          { status: "BLOCKED" },
+        ],
+      },
+      select: {
+        userId: true,
+        name: true,
+        email: true,
+        avatar: true,
+      },
+    });
+
+    return users;
   }
 
   async updateUserById(userId: string, file: any, data: any) {
