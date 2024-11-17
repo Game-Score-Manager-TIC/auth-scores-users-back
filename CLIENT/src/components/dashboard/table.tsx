@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { UpdateUserButton, DeleteUserButton } from "./buttons";
 import UserStatus from "./status";
+import { useRouter } from "next/navigation";
 
 export default function UsersTable({
   data,
@@ -16,6 +17,14 @@ export default function UsersTable({
   }>;
   currentPage: number;
 }) {
+  const router = useRouter();
+
+  const handleProfailDetail = (userId: string) => {
+    // Implement your own logic to handle the profail detail
+    router.push(`/users/profile/${userId}`);
+  }
+
+
   if (!data.length) return <div>No users found</div>;
 
   return (
@@ -29,7 +38,7 @@ export default function UsersTable({
                 key={user.userId}
                 className="mb-2 w-full rounded-md bg-white p-4"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 cursor-pointer" onClick={() => handleProfailDetail(user.userId)}>
                   {user.avatar && (
                     <Image
                       src={user.avatar}
@@ -77,10 +86,11 @@ export default function UsersTable({
               {data.map((user) => (
                 <tr
                   key={user.userId}
-                  className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg py-3 text-sm hover:bg-gradient-3 hover:text-white"
+                  className="w-full  border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg py-3 text-sm hover:bg-gradient-3 hover:text-white"
+
                 >
                   <td className="whitespace-nowrap py-3 pl-6 pr-3">
-                    <div className="flex items-center gap-3">
+                    <div className="flex cursor-pointer items-center gap-3" onClick={() => handleProfailDetail(user.userId)}>
                       {user.avatar && (
                         <Image
                           src={user.avatar}

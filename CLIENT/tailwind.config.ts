@@ -37,6 +37,7 @@ const config: Config = {
         heading2: "58px",
         heading3: "48px",
         heading4: "42px",
+        heading5: "32px",
         paragraph1: "30px",
         paragraph2: "20px",
         paragraph3: "16px",

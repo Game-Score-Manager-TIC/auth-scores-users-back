@@ -5,13 +5,14 @@ import {
   createScore,
   deleteScore as deleteScoreAPI,
   getTopFiveScores,
+  getScoresByUserId,
 } from "client/services/features/scoresService"; // Ajusta la ruta de importación según tu estructura de archivos
 
 export type Score = {
-  score_id: string;
+  scoreId: string;
   game: string;
   score: number;
-  user_id: string;
+  userId: string;
 };
 
 export type User = {
@@ -21,10 +22,10 @@ export type User = {
 }
 
 export type ScoreTopFive = {
-  score_id: string;
+  scoreId: string;
   game: string;
   score: number;
-  user_id: string;
+  userId: string;
   user: User;
 }
 
@@ -53,7 +54,7 @@ export const fetchScores = createAsyncThunk(
 
 // Thunk para obtner los 5 mejores scores
 export const fetchTopFiveScores = createAsyncThunk<
-  ScoreTopFive[], 
+  ScoreTopFive[],
   void,
   { rejectValue: string }
 >(
@@ -61,6 +62,15 @@ export const fetchTopFiveScores = createAsyncThunk<
   async (_, { getState }) => {
     const token = (getState() as RootState).auth.token;
     return await getTopFiveScores(token);
+  }
+);
+
+// Tunk para obtener los scores de un usuario
+export const fetchScoresByUserId = createAsyncThunk(
+  "scores/fetchScoresByUserId",
+  async (userId: string, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+    return await getScoresByUserId(userId, token);
   }
 );
 
@@ -118,6 +128,20 @@ export const scores = createSlice({
       state.status = "loading";
 
     });
+    // Caso para fullfilled para fetchScoresByUserId
+    builder.addCase(fetchScoresByUserId.fulfilled, (state, action) => {
+      state.status = "succeeded";
+      state.scores = action.payload;
+    });
+    // Caso pending para fetchScoresByUserId
+    builder.addCase(fetchScoresByUserId.pending, (state) => {
+      state.status = "loading";
+    });
+    // Caso rejected para fetchScoresByUserId
+    builder.addCase(fetchScoresByUserId.rejected, (state, action) => {
+      state.status = "failed";
+      state.error = action.error.message || "Error fetching scores by user";
+    });
 
     // Caso fulfilled para addNewScore
     builder.addCase(addNewScore.fulfilled, (state, action) => {
@@ -127,9 +151,10 @@ export const scores = createSlice({
     // Caso fulfilled para deleteScore
     builder.addCase(deleteScore.fulfilled, (state, action) => {
       state.scores = state.scores.filter(
-        (score) => score.score_id !== action.payload
+        (score) => score.scoreId !== action.payload
       );
     });
+
   },
 });
 
@@ -141,12 +166,15 @@ export const selecAllScores = (state: { scores: ScoresState }) =>
   state.scores.scores;
 export const selecTopFiveScores = (state: { scores: ScoresState }) =>
   state.scores.scoresTopFive
-export const selecScoresById =
-  (user_id: string) => (state: { scores: ScoresState }) =>
-    state.scores.scores.filter((score) => score.user_id === user_id);
+export const selecScoresByUserId =
+  (user_id: string) => (state: { scores: ScoresState }) => {
+    return state.scores.scores.filter((score) => score.userId === user_id);
+  }
 export const selecScoresByGame =
   (game: string) => (state: { scores: ScoresState }) =>
     state.scores.scores.filter((score) => score.game === game);
+
+
 
 // Exportar el reducer
 export default scores.reducer;

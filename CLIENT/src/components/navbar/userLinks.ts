@@ -24,6 +24,7 @@ const playerRoutes = [
 const adminRoutes = [
   ...global,
   { name: "Admin - Jugadores", href: "/users/admin", icon: UserGroupIcon },
+  { name: "Perfil", href: "/users/profile/:userId", icon: UserIcon },
 ];
 
 export const getNavigationLinks = (roles: string[]) => {
