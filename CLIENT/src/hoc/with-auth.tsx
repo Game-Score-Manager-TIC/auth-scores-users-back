@@ -21,17 +21,14 @@ const withAuth = (
       const roles = auth?.roles || [];
 
       if (roles.includes(requiredRole)) {
-        console.log(`role is valid: ${roles}`);
         setIsAuthenticated(true);
       } else {
-        console.log(`role invalid: ${roles}`);
         router.push("/auth/login");
       }
     }, [router, requiredRole, auth.roles]);
 
     if (!isAuthenticated) {
-      console.log(`Not authenticated: ${isAuthenticated}`);
-      return null; // Se puede retornar un loading spinner o un componente de espera aquí
+      return null; 
     }
 
     return <WrappedComponent {...props} />;

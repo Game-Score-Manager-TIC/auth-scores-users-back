@@ -27,6 +27,9 @@ export default function UsersTable({
 
   if (!data.length) return <div>No users found</div>;
 
+
+
+
   return (
     <div className="mt-6 flow-root">
       <div className="inline-block min-w-full align-middle">
@@ -52,7 +55,7 @@ export default function UsersTable({
                     <p className="font-medium">{user.name}</p>
                     <p className="text-sm text-gray-500">{user.email}</p>
                     <p className="text-sm text-gray-500">
-                      Roles: {user.roles.join(",")}
+                      Roles: {user.roles.join(", ")}
                     </p>
                     <UserStatus status={user.status} />
                   </div>

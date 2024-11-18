@@ -12,7 +12,7 @@ export async function getAllScores(paginationQuery: { page: number; limit: numbe
 }
 
 // Crear un nuevo puntaje
-export async function createScore(createScoreDto: { playerId: string; score: number }, token: string) {
+export async function createScore(createScoreDto: { userId: string; game: string; score: number }, token: string) {
   const response = await apiClient.post("/scores", createScoreDto, {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export async function createScore(createScoreDto: { playerId: string; score: num
   return response.data;
 }
 
-export async function getScoresByUserId(userId: string, token: string){
+export async function getScoresByUserId(userId: string, token: string) {
   const response = await apiClient.get(`/scores/user/${userId}`, {
     headers: {
       Authorization: `Bearer ${token}`,

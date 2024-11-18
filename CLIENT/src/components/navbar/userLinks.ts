@@ -17,8 +17,6 @@ const global = [
 const playerRoutes = [
   ...global,
   { name: "Perfil", href: "/users/profile/:userId", icon: UserIcon },
-  { name: "Puntuaciones", href: "/users/scores/:userId", icon: TrophyIcon },
-  { name: "Añadir Puntuación", href: "/scores/:userId", icon: TrophyIcon },
 ];
 
 const adminRoutes = [

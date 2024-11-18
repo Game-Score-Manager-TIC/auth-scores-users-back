@@ -33,48 +33,47 @@ export default function AuthLinks() {
   const linkClass =
     "flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-label1 font-medium hover:bg-gradient-3 hover:text-white md:flex-none md:justify-start md:p-1";
 
+
   return (
     <div className="mt-3 flex md:gap-1 justify-center">
       {!auth.token
         ? authLinks.map((link) => {
-            const LinkIcon = link.icon;
-            return (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`${linkClass} ${
-                  pathname === link.href ? "bg-gradient-3 text-white" : ""
+          const LinkIcon = link.icon;
+          return (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`${linkClass} ${pathname === link.href ? "bg-gradient-3 text-white" : ""
                 }`}
-              >
-                <LinkIcon className="w-6" />
-                <p className="hidden md:block">{link.name}</p>
-              </Link>
-            );
-          })
+            >
+              <LinkIcon className="w-6" />
+              <p className="hidden md:block">{link.name}</p>
+            </Link>
+          );
+        })
         : logoutLinks.map((link) => {
-            const LinkIcon = link.icon;
-            return link.name === "Salir" ? (
-              <button
-                key={link.name}
-                onClick={handleLogout}
-                className={`${linkClass} md:px-4`}
-              >
-                <LinkIcon className="w-6" />
-                <p className="hidden md:block">{link.name}</p>
-              </button>
-            ) : (
-              <Link
-                key={link.name}
-                href={link.href}
-                className={`${linkClass} ${
-                  pathname === link.href ? "bg-gradient-3 text-white" : ""
+          const LinkIcon = link.icon;
+          return link.name === "Salir" ? (
+            <button
+              key={link.name}
+              onClick={handleLogout}
+              className={`${linkClass} md:px-4`}
+            >
+              <LinkIcon className="w-6" />
+              <p className="hidden md:block">{link.name}</p>
+            </button>
+          ) : (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`${linkClass} ${pathname === link.href ? "bg-gradient-3 text-white" : ""
                 }`}
-              >
-                <LinkIcon className="w-6" />
-                <p className="hidden md:block">{link.name}</p>
-              </Link>
-            );
-          })}
+            >
+              <LinkIcon className="w-6" />
+              <p className="hidden md:block">{link.name}</p>
+            </Link>
+          );
+        })}
     </div>
   );
 }

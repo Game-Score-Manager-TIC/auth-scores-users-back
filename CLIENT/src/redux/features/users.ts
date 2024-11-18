@@ -7,6 +7,7 @@ import {
   getUserById,
   deleteUser,
   changeUserStatus,
+  downloadImageUser,
 } from "client/services/features/usersService";
 
 type User = {
@@ -74,6 +75,15 @@ export const modifyUser = createAsyncThunk(
   }
 );
 
+// Thunk donwload image by user
+export const downloadUserImage = createAsyncThunk(
+  "users/downloadUserImage",
+  async (userId: string, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+    const avatarUrl = await downloadImageUser(userId, token);
+    return avatarUrl;  // La URL completa es lo que necesitas
+  }
+);
 // Thunk para obtener un usuario por ID
 export const fetchUserById = createAsyncThunk(
   "users/fetchUserById",
@@ -142,6 +152,17 @@ const usersSlice = createSlice({
     // Reducers para addUser
     builder.addCase(addUser.fulfilled, (state, action) => {
       state.users.push(action.payload);
+    });
+
+    builder.addCase(downloadUserImage.fulfilled, (state, action) => {
+      const userId = action.meta.arg; // User ID is passed from the thunk
+      const avatar = action.payload;
+
+      // Find the user in the state by ID and update their avatar
+      const user = state.users.find((user) => user.userId === userId);
+      if (user) {
+        user.avatar = avatar; // Update the avatar field with the new Base64 string
+      }
     });
 
     // Reducers para modifyUser

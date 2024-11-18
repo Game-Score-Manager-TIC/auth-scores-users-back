@@ -28,7 +28,7 @@ export default function Page({
     // Despachar la acción fetchUsers cuando el componente se monta
     dispatch(fetchUsers({ page: currentPage, limit: 8, query }));
     dispatch(fetchTopFiveScores())
-  }, [dispatch, currentPage]);
+  }, [currentPage]);
 
   return (
     <div className="w-full">

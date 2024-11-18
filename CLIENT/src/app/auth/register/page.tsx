@@ -6,6 +6,8 @@ import { useAppDispatch } from "client/redux/hooks";
 import { addUser } from "client/redux/features/users";
 import { useRouter } from "next/navigation";
 import { login, loginResponse } from "client/redux/features/auth";
+import { useState } from "react";
+import { Spinner } from "@nextui-org/react";
 
 interface RegisterCredentials {
   name: string;
@@ -21,17 +23,22 @@ interface LoginCredentials {
 const RegisterPage: React.FC = () => {
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   const onSubmit = async (values: LoginCredentials | RegisterCredentials) => {
+    setIsLoading(true);
     try {
       if ("name" in values) {
-        const userWithRoles = { ...values, roles: ["PLAYER", "ADMIN"] };
+        const userWithRoles = { ...values, roles: ["PLAYER"] };
         // Esto es un registro, manejar como RegisterCredentials
         await dispatch(addUser(userWithRoles)).unwrap();
         const response = (await dispatch(
           login({ email: values.email, password: values.password })
         )) as { payload: loginResponse };
-        router.push(`/users/profile/${response.payload.user_id}`);
+        setTimeout(() => {
+          // After 5 seconds, redirect to the user's profile
+          router.push(`/users/profile/${response.payload.user_id}`);
+        }, 2000); 
       }
       // Si es LoginCredentials, manejar el inicio de sesión (aunque no tienes código para ello aquí)
     } catch (error) {
@@ -62,6 +69,14 @@ const RegisterPage: React.FC = () => {
       placeholder: "Enter your password",
     },
   ];
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center">
+        <Spinner size="lg" />
+      </div>
+    );
+  }
 
   return (
     <AuthForm

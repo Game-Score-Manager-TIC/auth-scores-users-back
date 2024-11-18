@@ -77,7 +77,7 @@ export const fetchScoresByUserId = createAsyncThunk(
 // Thunk para agregar un nuevo puntaje
 export const addNewScore = createAsyncThunk(
   "scores/addNewScore",
-  async (newScore: { playerId: string; score: number }, { getState }) => {
+  async (newScore: { userId: string; game: string; score: number }, { getState }) => {
     const token = (getState() as RootState).auth.token;
     return await createScore(newScore, token);
   }

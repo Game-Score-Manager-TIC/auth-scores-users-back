@@ -44,7 +44,6 @@ export const login = createAsyncThunk(
   ) => {
     try {
       const data = await loginUser(email, password);
-      console.log("Authent", data);
 
       return { roles: data.roles, token: data.token, user_id: data.user_id };
     } catch (error) {

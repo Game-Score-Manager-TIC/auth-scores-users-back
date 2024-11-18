@@ -46,6 +46,15 @@ export const updateUser = async (
   return response.data;
 };
 
+export const downloadImageUser = async (userId: string, token: string) => {
+  const response = await apiClient.get(`/users/${userId}/download-image`, {
+    headers: { Authorization: `Bearer ${token}` },
+    responseType: 'json', // Se espera un JSON con la URL de la imagen
+  });
+  return response.data.avatarUrl; // Ahora retornamos la URL completa de la imagen
+};
+
+
 export const getUserById = async (userId: string, token: string) => {
   const response = await apiClient.get(`/users/${userId}`, {
     headers: { Authorization: `Bearer ${token}` },

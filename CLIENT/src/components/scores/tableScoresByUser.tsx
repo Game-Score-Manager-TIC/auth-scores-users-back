@@ -18,6 +18,12 @@ export default function TableScoresByUser({
 }: {
     data: ScoresByUserIdProps[];
 }) {
+    // Pre-format scores to ensure consistent hook calls
+    const formattedData = data.map((d) => ({
+        game: d.game,
+        formattedScore: useFormattedScore(d.score),
+    }));
+
     return (
         <Table
             removeWrapper
@@ -32,18 +38,13 @@ export default function TableScoresByUser({
 
             {/* Table Body */}
             <TableBody>
-                {data && data.length > 0 ? (
-                    data.map((d: ScoresByUserIdProps, i: number) => {
-                        // Format the score using the custom hook
-                        const formattedScore = useFormattedScore(d.score);
-
-                        return (
-                            <TableRow key={i} className="text-white">
-                                <TableCell>{d.game}</TableCell>
-                                <TableCell>{formattedScore}</TableCell>
-                            </TableRow>
-                        );
-                    })
+                {formattedData.length > 0 ? (
+                    formattedData.map((d, i) => (
+                        <TableRow key={i} className="text-white">
+                            <TableCell>{d.game}</TableCell>
+                            <TableCell>{d.formattedScore}</TableCell>
+                        </TableRow>
+                    ))
                 ) : (
                     // Display message if no data is found
                     <TableRow>
