@@ -7,6 +7,7 @@ import { Response } from 'express';
 import { join } from 'path';
 import * as fs from 'fs';
 import { faker } from '@faker-js/faker';
+import * as flatted from 'flatted';
 
 
 export interface Paginator<T = any> {
@@ -15,6 +16,14 @@ export interface Paginator<T = any> {
   page: number;
   limit: number;
   totalPages: number;
+}
+
+function removeCircularReferences(key: string, value: any) {
+  // If the value is a socket, stream, or any object related to networking, remove it
+  if (value && value.constructor && value.constructor.name === 'Socket') {
+    return undefined; // Don't include the Socket object
+  }
+  return value; // Return everything else as normal
 }
 
 @Injectable()
@@ -97,6 +106,9 @@ export class UsersService {
           },
           {
             status: "BLOCKED",
+          },
+          {
+            status: "INACTIVE",
           }
         ]
       },
@@ -146,13 +158,18 @@ export class UsersService {
   }
 
   async updateUserById(userId: string, file: any, data: any) {
+
+
+    const imageUrl = `http://localhost:${process.env.PORT}/uploads/${file.filename}`;
+
     const updateUser = await this.prisma.user.update({
       where: { userId },
       data: {
         name: data.name,
-        avatar: file.filename,
+        avatar: imageUrl,
       }
     })
+
 
     return this.getUserById(updateUser.userId)
   }
@@ -285,6 +302,8 @@ export class UsersService {
     return null;
   }
 
+
+
   async downloadImage(userId: string, res: Response) {
     const user = await this.getUserById(userId);
 
@@ -302,9 +321,11 @@ export class UsersService {
       throw new NotFoundException('El archivo de avatar no existe');
     }
 
-    const avatarBase64 = fs.readFileSync(filePath, { encoding: 'base64' });
+    // Genera la URL accesible de la imagen
+    const imageUrl = `http://localhost:${process.env.PORT}/uploads/${user.avatar}`;
 
-    return res.json({ ...user, avatar: avatarBase64 });
+    // Devuelve la URL de la imagen
+    return res.json({ avatarUrl: imageUrl });
   }
 
   async deleteUserById(userId: string) {
@@ -313,6 +334,10 @@ export class UsersService {
       throw new NotFoundException('Usuario no encontrado');
     }
 
+    // await this.prisma.user.delete({
+    //   where: { userId },
+    // });
+
     await this.prisma.user.update({
       where: { userId },
       data: {
@@ -320,6 +345,7 @@ export class UsersService {
       },
     });
   }
+
   async changedUserStatusById(userId: string) {
     const user = await this.getUserById(userId)
 

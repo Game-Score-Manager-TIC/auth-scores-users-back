@@ -94,10 +94,10 @@ export class UsersController {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @Roles('ADMIN', 'PLAYER')
   @ApiBearerAuth()
-  @ApiOperation({ summary: 'Descargar la imagen y información para un jugador' })
+  @ApiOperation({ summary: 'Descargar la imagen y la información para un jugador' })
   @ApiResponse({ status: HttpStatus.OK, description: 'Descarga en detalle con la imagen del jugador' })
   @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Usuario no encontrado!' })
-  @HttpCode(HttpStatus.NO_CONTENT)
+  @HttpCode(HttpStatus.OK) 
   async downloadImage(@Param('userId') userId: string, @Res({ passthrough: true }) res: Response) {
     return await this.usersService.downloadImage(userId, res);
   }

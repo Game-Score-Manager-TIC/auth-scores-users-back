@@ -10,5 +10,5 @@ export class CreateScoresDto {
     game: string;
 
     @ApiProperty({ description: 'Puntaje para el juego' })
-    score: Score;
+    score: number;
 }
